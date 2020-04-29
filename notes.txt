@@ -17,8 +17,11 @@
 - Minikube CLI: command tool para gerenciar o cluster
 
 [Deployment]
-- Configuracao para subir instacias das aplicacoes
+- Configuracao para subir aplicacoes
 - Kubernetes Deployment Controller: monitora as aplicacoes e faz replace caso der falha
+"""
+  kubectl create deploymenent nginx --image=nginx
+"""
 
 [Kubeclt]
 - Comunica com o Kubernetes API para gerenciar o cluster
@@ -33,3 +36,6 @@
 [Service]
 - Agrupa os pods e gerencia o lifecycle deles
 - Criar formas de comunicao entre pods e servicos externos
+"""
+  kubectl expose deployments/nginx type="NodePort" --port 80
+"""
