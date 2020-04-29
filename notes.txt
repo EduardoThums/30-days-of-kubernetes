@@ -39,3 +39,11 @@
 """
   kubectl expose deployments/nginx type="NodePort" --port 80
 """
+
+[Configmap]
+- Armaneza variavies de ambiente e dados usados artefatos dentro do Pod
+- Gerado atraves do kubectl ou pelo configMapGenerator no arquivo kustomization.yaml
+"""
+  kubectl create configmap gamer-config --from-config-ui.properties
+  kubectl describe configmap gamer-config -o yaml
+"""
