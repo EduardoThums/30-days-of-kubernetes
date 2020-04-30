@@ -4,6 +4,7 @@
 [Master]
 - Gerencia o cluster de forma geral
 - Kubernetes API: expoem recursos para os Kubelets e usuarios externos para gerenciar o cluster
+- etcd: banco de dados interno
 
 [Node]
 - VM's ou maquinas fisicas que servem como workers para as aplicacoes dentro do cluster
