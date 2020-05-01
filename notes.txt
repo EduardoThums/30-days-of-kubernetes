@@ -48,3 +48,11 @@
   kubectl create configmap gamer-config --from-config-ui.properties
   kubectl describe configmap gamer-config -o yaml
 """
+
+[Namespace]
+- Cluster virtual dentro de um cluster fisico
+- Separa recursos entre os cluster
+
+[Setup]
+- Minikube
+- MicroK8S
