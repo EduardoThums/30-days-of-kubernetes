@@ -39,6 +39,7 @@
 [Service]
 - Agrupa os pods por meio de labels
 - Expoem os endpoint dos pods
+- CoreDNS resolve as services pelo nome
 """
   kubectl expose deployments/nginx type="NodePort" --port 80
 """
