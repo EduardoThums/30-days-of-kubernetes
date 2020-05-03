@@ -39,6 +39,9 @@
 
 [Generators]
 - Templates default para os objetos dentro do cluster
+"""
+kubectl create deploy nginx --image nginx --dry-run -o yaml
+"""
 
 [Configmap]
 - Armaneza variavies de ambiente e dados usados artefatos dentro do Pod
