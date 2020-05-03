@@ -8,14 +8,6 @@
 
 [Node]
 - VM's ou maquinas fisicas que servem como workers para as aplicacoes dentro do cluster
-- Kubelet: 
-  - gerencia os pods dentro do node
-  - comunica-se com o Master
-  - container runtime
-
-[Minikube]
-- Opção leve para usar o Kubernetes, cria uma VM e faz deploy Node e um Cluster
-- Minikube CLI: command tool para gerenciar o cluster
 
 [Controller]
 - Gerenciamento do deployment de aplicacoes
@@ -40,9 +32,13 @@
 - Agrupa os pods por meio de labels
 - Expoem os endpoint dos pods
 - CoreDNS resolve as services pelo nome
+- Ordem de resolucao de enderecamento: LoadBalancer -> NodePort - ClusterIP
 """
   kubectl expose deployments/nginx type="NodePort" --port 80
 """
+
+[Generators]
+- Templates default para os objetos dentro do cluster
 
 [Configmap]
 - Armaneza variavies de ambiente e dados usados artefatos dentro do Pod
@@ -55,7 +51,3 @@
 [Namespace]
 - Cluster virtual dentro de um cluster fisico
 - Separa recursos entre os cluster
-
-[Setups on Ubuntu]
-- Minikube
-- MicroK8S
