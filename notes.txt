@@ -43,6 +43,17 @@
 kubectl create deploy nginx --image nginx --dry-run -o yaml
 """
 
+[Manifest]
+- Detalha as espeficiacoes de um objeto dentro da API
+- Formato yaml por padrao
+- Tags obrigatorias: apiVersion, kind, metadada, spec
+- apiVersion + kind: em conjunto define o recurso usado no yaml
+"""
+kubectl api-resources
+kubectl api-versions
+kubectl explain <resource>
+"""
+
 [Configmap]
 - Armaneza variavies de ambiente e dados usados artefatos dentro do Pod
 - Gerado atraves do kubectl ou pelo configMapGenerator no arquivo kustomization.yaml
