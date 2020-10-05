@@ -1,67 +1,36 @@
-[KUBERNETES]
-- Cluster: consiste em master e nodes
+Pods - where the containers will be running inside the node
+Controller - create/update pods and other objects
+  - Deployment
+  - ReplicaSet
+Service - stable ip address for the pod(intenally or externally)
+  - ClusterIP(default): create virtual ip only reacheable inside the cluster
+  - NodePort: create port in the node to access the pod
+  - LoadBalancer: use with external load balancer
+  - ExternalName: give dns name to pods
+Namespace - group objects for kube control view/filtering
 
-[Master]
-- Gerencia o cluster de forma geral
-- Kubernetes API: expoem recursos para os Kubelets e usuarios externos para gerenciar o cluster
-- etcd: banco de dados interno
+[Controllers]
+Deployment -> ReplicaSet -> Pod
 
-[Node]
-- VM's ou maquinas fisicas que servem como workers para as aplicacoes dentro do cluster
+[Commands]
+#Create deployment using nginx image with 2 pods
+- kubectl run nginx-deploy --image nginx --replicas 2
 
-[Controller]
-- Gerenciamento do deployment de aplicacoes
-- Deployment: gerenciar as config do ReplicaSet
-- ReplicaSet: gerencia as replicas dos pods e assegura que todos estao rodando com o mesmo template
-"""
-  kubectl create deploymenent nginx --image=nginx
-"""
+#Delete deployment
+- kubectl delete deploy nginx-deploy
 
-[Kubeclt]
-- Comunica com o Kubernetes API para gerenciar o cluster
-- run command (before 1.18) -> criar um deployment -> Deployment cria ReplicaSet -> ReplicaSet criar Pod
+#Scale pods
+- kubectl scale deploy apache --replicas 2
 
-[Pod]
-- Conjunto de containers que compartilhar informacoes como:
-  - volume
-  - ip address
-  - portas
-  - imagens especificas
+#Get logs
+- kubectl logs deploy/apache --follow
 
-[Service]
-- Agrupa os pods por meio de labels
-- Expoem os endpoint dos pods
-- CoreDNS resolve as services pelo nome
-- Ordem de resolucao de enderecamento: LoadBalancer -> NodePort - ClusterIP
-"""
-  kubectl expose deployments/nginx type="NodePort" --port 80
-"""
+#Describe pod
+- kubectl describe pod/<pod_name>
 
-[Generators]
-- Templates default para os objetos dentro do cluster
-"""
-kubectl create deploy nginx --image nginx --dry-run -o yaml
-"""
+#Expose Service
+- kubectl expose deploy/<deploy_name> --port 8888 
 
-[Manifest]
-- Detalha as espeficiacoes de um objeto dentro da API
-- Formato yaml por padrao
-- Tags obrigatorias: apiVersion, kind, metadada, spec
-- apiVersion + kind: em conjunto define o recurso usado no yaml
-"""
-kubectl api-resources
-kubectl api-versions
-kubectl explain <resource>
-"""
-
-[Configmap]
-- Armaneza variavies de ambiente e dados usados artefatos dentro do Pod
-- Gerado atraves do kubectl ou pelo configMapGenerator no arquivo kustomization.yaml
-"""
-  kubectl create configmap gamer-config --from-config-ui.properties
-  kubectl describe configmap gamer-config -o yaml
-"""
-
-[Namespace]
-- Cluster virtual dentro de um cluster fisico
-- Separa recursos entre os cluster
+[Tips]
+- you wanna create controllers so them take care of the pods state
+- the command "kubectl run" after 1.18 version creates only a pod(similar to docker run)
